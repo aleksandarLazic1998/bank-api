@@ -1,0 +1,25 @@
+{
+	"name": "bank-api",
+	"version": "1.0.0",
+	"description": "Small API with only purpose is to exercise TypeORM and Express",
+	"main": "index.js",
+	"scripts": {
+		"start": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/aleksandarLazic1998/bank-api.git"
+	},
+	"keywords": [
+		"NodeJS",
+		"Express",
+		"TypeORM",
+		"PostgreSQL"
+	],
+	"author": "Aleksandar Lazic",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/aleksandarLazic1998/bank-api/issues"
+	},
+	"homepage": "https://github.com/aleksandarLazic1998/bank-api#readme"
+}
