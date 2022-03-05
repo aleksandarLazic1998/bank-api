@@ -4,7 +4,9 @@
 	"description": "Small API with only purpose is to exercise TypeORM and Express",
 	"main": "index.js",
 	"scripts": {
-		"start": "echo \"Error: no test specified\" && exit 1"
+		"start": "env-cmd -f .env nodemon -w \"src/**/*.ts\" --exec ts-node src/index.ts",
+		"prepare": "husky install",
+		"pre-commit": "npx pretty-quick"
 	},
 	"repository": {
 		"type": "git",
