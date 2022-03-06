@@ -8,7 +8,7 @@ export class Banker extends Person {
 	employee_number: string;
 
 	/* Foreign Keys */
-	@ManyToMany(() => Client)
+	@ManyToMany((type) => Client)
 	@JoinTable({
 		name: "bankers_clients",
 		joinColumn: {

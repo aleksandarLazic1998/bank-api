@@ -21,6 +21,6 @@ export class Client extends Person {
 	@OneToMany(() => Transaction, (transactions) => transactions.client)
 	transactions: Transaction[];
 
-	@ManyToMany(() => Client)
+	@ManyToMany((type) => Banker)
 	bankers: Banker[];
 }

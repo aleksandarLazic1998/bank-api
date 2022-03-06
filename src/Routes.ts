@@ -5,6 +5,9 @@ const ROUTES = {
 	BANKER: {
 		BASE: "/api/banker",
 	},
+	TRANSACTION: {
+		BASE: "/api/transaction",
+	},
 };
 
 export default ROUTES;

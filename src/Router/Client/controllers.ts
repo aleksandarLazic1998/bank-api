@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Client } from "../../Entities/Client";
-import { validateClients } from "./Helpers/validateClients";
+import { findItemError } from "../Helpers/findItemError";
+import { validateClients } from "../Helpers/validateClients";
 
 export async function createUser(req: Request, res: Response) {
 	const {
@@ -34,11 +35,8 @@ export async function editUser(req: Request, res: Response) {
 	const { clientId } = req.params;
 	const client = await Client.findOne(+clientId);
 
-	if (!client) {
-		return res
-			.status(400)
-			.json({ msg: `Client with id:${clientId} does not exist` });
-	} else {
+	if (!client) return findItemError(clientId, "Client");
+	else {
 		Client.merge(client, req.body);
 
 		try {

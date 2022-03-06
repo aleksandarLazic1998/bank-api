@@ -1,3 +1,4 @@
+import { TransactionActions } from "../typescript/TransactionActions";
 import {
 	BaseEntity,
 	Column,
@@ -9,21 +10,17 @@ import {
 } from "typeorm";
 import { Client } from "./Client";
 import { Person } from "./shared/Person";
-enum TransactionActions {
-	WITHDRAWAL = "WITHDRAWAL",
-	DEPOSIT = "DEPOSIT",
-}
 
 @Entity("transaction")
 export class Transaction extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ enum: TransactionActions, type: "enum" })
+	@Column({ type: "enum", enum: TransactionActions })
 	type: string;
 
 	@Column({ type: "numeric", default: 0 })
-	balance: number;
+	amount: number;
 
 	/* Foreign Keys */
 	@ManyToOne(() => Client, (client) => client.transactions)
