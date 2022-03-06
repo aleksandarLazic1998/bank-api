@@ -1,9 +1,15 @@
-import { TransactionActions } from "src/typescript/enums/TransactionActions";
-import { BaseEntity, Column, Entity } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { Person } from "./shared/Person";
+enum TransactionActions {
+	WITHDRAWAL = "WITHDRAWAL",
+	DEPOSIT = "DEPOSIT",
+}
 
 @Entity("transaction")
 export class Transaction extends BaseEntity {
+	@PrimaryGeneratedColumn()
+	id: number;
+
 	@Column({ enum: TransactionActions, type: "enum" })
 	type: string;
 

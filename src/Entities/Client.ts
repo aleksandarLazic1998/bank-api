@@ -15,9 +15,3 @@ export class Client extends Person {
 	@Column({ type: "simple-array", default: [] })
 	family_members: [];
 }
-
-// -TRANSACTIONS:
-// id:number,
-// amount numeric
-// type: enum('withdrawal','deposit')
-// client_id fk relacija sa client (many to one)
