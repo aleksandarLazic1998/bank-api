@@ -16,8 +16,11 @@ export class Transaction extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: "enum", enum: TransactionActions })
-	type: string;
+	@Column({
+		type: "enum",
+		enum: ["WITHDRAW", "DEPOSIT"],
+	})
+	type: TransactionActions;
 
 	@Column({ type: "numeric", default: 0 })
 	amount: number;

@@ -12,13 +12,13 @@ export async function createTransaction(req: Request, res: Response) {
 
 	if (!client) return findItemError(clientId, "Client");
 	else {
-		console.log(1);
-
 		const transaction = Transaction.create({ amount, type, client });
 		await transaction.save();
-
-		if (type === TransactionActions.DEPOSIT) client.balance += amount;
-		else if (type === TransactionActions.WITHDRAWAL) client.balance -= amount;
+		if (type === TransactionActions["DEPOSIT"]) {
+			client.balance += amount;
+		} else if (type === TransactionActions["WITHDRAWAL"]) {
+			client.balance -= amount;
+		}
 		client.transactions = [transaction];
 
 		await client.save();
