@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Banker } from "src/entities/Banker";
+import { Banker } from "../../Entities/Banker";
 import { validateClients } from "../Client/Helpers/validateClients";
 
 export async function createBanker(req: Request, res: Response) {
@@ -20,6 +20,24 @@ export async function createBanker(req: Request, res: Response) {
 			return res.json(banker);
 		} catch (error) {
 			return res.status(400).json(error);
+		}
+	}
+}
+
+export async function editBanker(req: Request, res: Response) {
+	const { bankerId } = req.params;
+	const banker = await Banker.findOne(+bankerId);
+
+	if (!banker) {
+		return res
+			.status(400)
+			.json({ msg: `Banker with id:${bankerId} was not found` });
+	} else {
+		await Banker.merge(banker, req.body);
+		try {
+			const response = Banker.save(banker);
+		} catch (error) {
+			res.status(400).json({ msg: "Editing Banker was not possible" });
 		}
 	}
 }
