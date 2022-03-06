@@ -3,7 +3,7 @@ import { Response } from "express";
 interface IProps {
 	res: Response;
 	email: string;
-	cardNumber: string;
+	cardNumber?: string;
 }
 
 export const validateClients = ({ email, cardNumber, res }: IProps) => {
