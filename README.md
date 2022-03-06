@@ -26,7 +26,9 @@
 - typeorm: https://www.npmjs.com/package/typeorm,
 - typescript: https://www.npmjs.com/package/typescript,
 - @types/node: https://www.npmjs.com/package/@types/node,
-- @types/express: https://www.npmjs.com/package/@types/express
+- @types/express: https://www.npmjs.com/package/@types/express,
+- @types/cors: https://www.npmjs.com/package/@types/cors,
+- @types/morgan: https://www.npmjs.com/package/@types/morgan
 
 ## Technologies:
 
