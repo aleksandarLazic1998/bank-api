@@ -4,7 +4,7 @@ import { Person } from "./shared/Person";
 @Entity("client")
 export class Client extends Person {
 	@Column({ type: "numeric", default: 0 })
-	balance!: number;
+	balance: number;
 
 	@Column({ name: "active", default: true })
 	is_active: boolean;
