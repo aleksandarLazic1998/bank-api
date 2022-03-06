@@ -1,4 +1,5 @@
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany } from "typeorm";
+import { Banker } from "./Banker";
 import { Person } from "./shared/Person";
 import { Transaction } from "./Transaction";
 
@@ -19,4 +20,7 @@ export class Client extends Person {
 	/* Foreign Keys */
 	@OneToMany(() => Transaction, (transactions) => transactions.client)
 	transactions: Transaction[];
+
+	@ManyToMany(() => Client)
+	bankers: Banker[];
 }
