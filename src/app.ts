@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import ClientRouter from "./Router/Client/router";
+import BankerRouter from "./Router/Banker/router";
 const app = express();
 
 /* MIDDLEWARES */
@@ -11,5 +12,6 @@ app.use(morgan("combined"));
 
 /* ROUTERS */
 app.use(ClientRouter);
+app.use(BankerRouter);
 
 export default app;

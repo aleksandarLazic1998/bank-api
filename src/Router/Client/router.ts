@@ -1,6 +1,6 @@
 import express, { Request, RequestHandler } from "express";
 import ROUTES from "../../Routes";
-import { createUser, editUser } from "./controller";
+import { createUser, editUser } from "./controllers";
 
 const ClientRouter = express.Router();
 
