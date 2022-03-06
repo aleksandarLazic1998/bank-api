@@ -19,5 +19,5 @@ export const dbConnection: PostgresConnectionOptions = {
 	port,
 	password,
 	synchronize: true,
-	entities: [Client, Banker, Transaction],
+	entities: ["src/Entities/*.ts"],
 };
