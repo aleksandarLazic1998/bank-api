@@ -1,4 +1,13 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+	BaseEntity,
+	Column,
+	Entity,
+	JoinColumn,
+	ManyToMany,
+	ManyToOne,
+	PrimaryGeneratedColumn,
+} from "typeorm";
+import { Client } from "./Client";
 import { Person } from "./shared/Person";
 enum TransactionActions {
 	WITHDRAWAL = "WITHDRAWAL",
@@ -15,4 +24,9 @@ export class Transaction extends BaseEntity {
 
 	@Column({ type: "numeric", default: 0 })
 	balance: number;
+
+	/* Foreign Keys */
+	@ManyToOne(() => Client, (client) => client.transactions)
+	@JoinColumn({ name: "client_id" })
+	client: Client;
 }
