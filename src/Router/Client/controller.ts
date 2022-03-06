@@ -33,12 +33,19 @@ export async function createUser(req: Request, res: Response) {
 export async function editUser(req: Request, res: Response) {
 	const { clientId } = req.params;
 	const client = await Client.findOne(+clientId);
-	Client.merge(client, req.body);
 
-	try {
-		const response = await Client.save(client);
-		return res.status(200).json(response);
-	} catch (error) {
-		return res.status(400).json(error);
+	if (!client) {
+		return res
+			.status(400)
+			.json({ msg: `Client with id:${clientId} does not exist` });
+	} else {
+		Client.merge(client, req.body);
+
+		try {
+			const response = await Client.save(client);
+			return res.status(200).json(response);
+		} catch (error) {
+			return res.status(400).json(error);
+		}
 	}
 }
