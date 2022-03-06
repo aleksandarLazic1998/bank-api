@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Client } from "../../Entities/Client";
+import { validateClients } from "./Helpers/validateClients";
 
 export async function createUser(req: Request, res: Response) {
 	const {
@@ -9,23 +10,34 @@ export async function createUser(req: Request, res: Response) {
 		card_number: cardNumber,
 	} = req.body;
 
-	let validationPayload = "User must add ";
-	if (!email) {
-		return res.status(400).json({ msg: (validationPayload += "email") });
-	} else if (!cardNumber) {
-		return res.status(400).json({ msg: (validationPayload += "card number") });
-	}
+	if (!email || !cardNumber) {
+		const validationPayload = { res, email, cardNumber };
+		validateClients(validationPayload);
+	} else {
+		const client = Client.create({
+			first_name: firstName,
+			last_name: lastName,
+			email,
+			card_number: cardNumber,
+		});
 
-	const client = Client.create({
-		first_name: firstName,
-		last_name: lastName,
-		email,
-		card_number: cardNumber,
-	});
+		try {
+			await client.save();
+			return res.json(client);
+		} catch (error) {
+			return res.status(400).json(error);
+		}
+	}
+}
+
+export async function editUser(req: Request, res: Response) {
+	const { clientId } = req.params;
+	const client = await Client.findOne(+clientId);
+	Client.merge(client, req.body);
 
 	try {
-		await client.save();
-		return res.json(client);
+		const response = await Client.save(client);
+		return res.status(200).json(response);
 	} catch (error) {
 		return res.status(400).json(error);
 	}
